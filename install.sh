@@ -3,6 +3,7 @@
 # store base path of execution
 BASEDIR=$(pwd)
 
+
 echo 'install required packages'
 sudo bash << EOF
 apt-get update
@@ -12,9 +13,15 @@ EOF
 
 # create catkin_workspace
 echo 'create catkin_workspace'
-source /opt/ros/indigo/setup.bash
-mkdir -p /home/turtlebot/catkin_ws/src
-cd /home/turtlebot/catkin_ws/src && catkin_init_workspace
+echo '-----------------------'
+if [ ! -d /home/turtlebot/catkin_ws ] ; then
+  source /opt/ros/indigo/setup.bash
+  mkdir -p /home/turtlebot/catkin_ws/src
+  cd /home/turtlebot/catkin_ws/src && catkin_init_workspace
+else
+  echo 'workspace already exists'
+  echo '-----------------------'
+fi
 
 # copy ros packages to workspace
 echo 'copy ros packages to workspace'
@@ -32,11 +39,17 @@ git clone https://github.com/negre/rplidar_ros.git /home/turtlebot/catkin_ws/src
 git clone https://furbaz:%40bitbucket2long@bitbucket.org/rapyutians/cloud_bridge.git /home/turtlebot/catkin_ws/src/cloud_bridge
 
 cd /home/turtlebot/catkin_ws && catkin_make
-
 cd $BASEDIR
+
 # copy launch scripts
 echo 'copy ros packages to workspace'
 cp launch_scripts/*.sh /home/turtlebot/
+
+
+# copy pygst kinect
+echo 'copy pygst kinect'
+echo '-----------------------'
+cp pygst-kinect/ /home/turtlebot
 
 # copy rplidar daemon script
 sudo bash << EOF
@@ -67,5 +80,8 @@ EOF
 sudo bash << EOF
 service cgroup-lite start 
 EOF
+
+echo 'Installation complete'
+echo '-----------------------'
 
 
