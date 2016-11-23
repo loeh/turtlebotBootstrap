@@ -59,7 +59,7 @@ cp launch_scripts/*.sh /home/turtlebot/
 # copy pygst kinect
 echo 'copy pygst kinect'
 echo '-----------------------'
-cp pygst-kinect/ /home/turtlebot
+cp -r pygst-kinect/ /home/turtlebot
 
 # copy rplidar daemon script
 echo 'create daemon for rplidar'
