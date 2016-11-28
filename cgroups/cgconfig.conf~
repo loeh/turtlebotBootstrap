@@ -10,7 +10,7 @@ group salt {
     }
   }
   memory {
-  memory.limit_in_bytes = 2G;
+  memory.limit_in_bytes = 3G;
   }
 }
 
@@ -61,4 +61,21 @@ group salt/nodepublisher {
   memory.limit_in_bytes = 100M;
   }
 }
+
+group salt/streamer {
+  perm {
+    admin {
+      uid = turtlebot;
+      gid = turtlebot;
+    }
+    task {
+      uid = 1000;
+      gid = 1000;
+    }
+  }
+  memory {
+  memory.limit_in_bytes = 1G;
+  }
+}
+
 
