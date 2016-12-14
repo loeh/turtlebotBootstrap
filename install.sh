@@ -109,6 +109,13 @@ cp udev/rplidar /etc/init.d
 chmod +x /etc/init.d/rplidar
 EOF
 
+# copy DockDriveActionClient
+echo 'copy DockDriveActionClient'
+echo '-----------------------'
+sudo bash << EOF
+yes | cp -rf docking/DockDriveActionClient.py /opt/ros/indigo/lib/kobuki_auto_docking
+EOF
+
 # copy rplidar local rules
 echo 'copy udev rules'
 echo '-----------------------'
