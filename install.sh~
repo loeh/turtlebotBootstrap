@@ -19,6 +19,18 @@ apt-get install -y tar git curl nano wget dialog net-tools build-essential pytho
 pip install numpy
 EOF
 
+# install docker
+echo 'installing docker'
+echo '-----------------------'
+sudo bash << EOF
+apt-get install apt-transport-https ca-certificates software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update
+apt-get install docker-ce
+EOF
+
+
 # create udev rule for kobuki
 echo 'create udev rule for kobuki'
 echo '-----------------------'
