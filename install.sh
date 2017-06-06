@@ -72,7 +72,9 @@ cd $BASEDIR
 echo 'install python wrappers libfreenect'
 echo '-----------------------'
 git clone https://github.com/OpenKinect/libfreenect.git
+sudo bash << EOF
 cd /home/$USER/libfreenect/wrappers/python && python setup.py install
+EOF
 cd $BASEDIR
 
 # install openni
@@ -158,6 +160,13 @@ echo 'copy rplidar conf'
 echo '-----------------------'
 sudo bash << EOF
 cp rplidar/rplidar.conf /etc/init
+EOF
+
+## rplidar user settings
+echo 'add user to dialout group'
+echo '-----------------------'
+sudo bash << EOF
+gpasswd --add $USER dialout
 EOF
 
 sudo bash << EOF
