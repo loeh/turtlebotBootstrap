@@ -55,15 +55,40 @@ echo '-----------------------'
 
 cd $BASEDIR
 
-cp -r icclab_turtlebot/ /home/$USER/catkin_ws/src/icclab_$USER
+if [ ! -d /home/$USER/catkin_ws/src/icclab_$USER ] ; then
+  cp -r icclab_turtlebot/ /home/$USER/catkin_ws/src/icclab_$USER
+else
+  echo 'icclab package already exists'
+  echo '-----------------------'
+fi
 
-cp -r moveto/ /home/$USER/catkin_ws/src/moveto
+if [ ! -d /home/$USER/catkin_ws/src/moveto ] ; then
+  cp -r moveto/ /home/$USER/catkin_ws/src/moveto
+else
+  echo 'moveto package already exists'
+  echo '-----------------------'
+fi
 
-cp -r rosnodeinfo/ /home/$USER/catkin_ws/src/rosnodeinfo
+if [ ! -d /home/$USER/catkin_ws/src/rosnodeinfo ] ; then
+  cp -r rosnodeinfo/ /home/$USER/catkin_ws/src/rosnodeinfo
+else
+  echo 'rosnodeinfo package already exists'
+  echo '-----------------------'
+fi
 
-git clone https://github.com/negre/rplidar_ros.git /home/$USER/catkin_ws/src/rplidar_ros
+if [ ! -d /home/$USER/catkin_ws/src/rplidar_ros ] ; then
+  git clone https://github.com/negre/rplidar_ros.git /home/$USER/catkin_ws/src/rplidar_ros
+else
+  echo 'rplidar_ros package already exists'
+  echo '-----------------------'
+fi
 
-git clone https://furbaz:%40bitbucket2long@bitbucket.org/rapyutians/cloud_bridge.git /home/$USER/catkin_ws/src/cloud_bridge
+if [ ! -d /home/$USER/catkin_ws/src/cloud_bridge ] ; then
+  git clone https://furbaz:%40bitbucket2long@bitbucket.org/rapyutians/cloud_bridge.git /home/$USER/catkin_ws/src/cloud_bridge
+else
+  echo 'cloud_bridge package already exists'
+  echo '-----------------------'
+fi
 
 cd /home/$USER/catkin_ws && catkin_make
 cd $BASEDIR

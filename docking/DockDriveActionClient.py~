@@ -36,12 +36,26 @@
 
 import roslib; roslib.load_manifest('kobuki_auto_docking')
 import rospy
+import salt.client
 
 import actionlib
 from kobuki_msgs.msg import AutoDockingAction, AutoDockingGoal
 from actionlib_msgs.msg import GoalStatus
 from std_msgs.msg import String
 import time
+
+def sendDockedEvent(succeded, message):
+  #create a salt caller
+  caller = salt.client.Caller()
+
+  caller.sminion.functions['event.send'](
+    'docking/goal/success',
+    {
+      'success': succeded,
+      'message': message,
+    }
+  )
+
 
 def goalReached(status):
   pub = rospy.Publisher('event', String, queue_size=10)
