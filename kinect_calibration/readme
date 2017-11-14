@@ -1,0 +1,3 @@
+Seve this file to: $HOME/.ros/camera_info/NAME.yaml
+
+Src: http://wiki.ros.org/openni_launch/Tutorials/IntrinsicCalibration

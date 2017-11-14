@@ -1,5 +1,5 @@
 #!/bin/bash
-source /opt/ros/indigo/setup.bash 
+source /opt/ros/kinetic/setup.bash 
 source /home/turtlebot/catkin_ws/devel/setup.bash
 
 # kill all running nodes from minimal + amcl
